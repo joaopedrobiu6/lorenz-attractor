@@ -10,7 +10,7 @@ void OpenApp(double tmax, double *xf, double *yf, double *zf);
 
 int main()
 {
-    double sigma = 10., beta = 2.667, rho = 28.;
+    double sigma = 10., beta = 2.667, rho = 50.;
     double x0 = 0., y0 = 1., z0 = 1.05;
 
     double tmax = 1000.;
@@ -62,7 +62,7 @@ void DrawImage(double tmax, double *xf, double *yf, double *zf)
     gStyle->SetPalette(1);
     gr->Draw("pcol LC");
 
-    c->SaveAs("foto.png");
+    c->SaveAs("foto1.png");
 
     delete gr;
     delete c;
