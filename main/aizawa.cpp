@@ -10,7 +10,7 @@ void OpenApp(double tmax, double *xf, double *yf, double *zf);
 
 int main()
 {
-    double sigma = 10., beta = 2.667, rho = 50.;
+    double a = 0.95, b = 0.7, c = 0.6, d = 3.5, e = 0.25, f = 0.1;
     double x0 = 0., y0 = 1., z0 = 1.05;
 
     double tmax = 1000.;
@@ -18,13 +18,13 @@ int main()
     ODE_analysis lorenz(3, {x0, y0, z0});
 
     lorenz.SetFunction(0, [&](ODEpoint p)
-                       { return -sigma * (p.X()[0] - p.X()[1]); });
+                       { return (p.X()[2] - b) * p.X()[0] - d * p.X()[1]; });
 
     lorenz.SetFunction(1, [&](ODEpoint p)
-                       { return rho * p.X()[0] - p.X()[1] - p.X()[0] * p.X()[2]; });
+                       { return d * p.X()[0] + (p.X()[2] - b) * p.X()[1]; });
 
     lorenz.SetFunction(2, [&](ODEpoint p)
-                       { return -beta * p.X()[2] + p.X()[0] * p.X()[1]; });
+                       { return c + a * p.X()[2] - (p.X()[2] * p.X()[2] * p.X()[2]) / 3 - (p.X()[0] * p.X()[0] + p.X()[1] * p.X()[1]) * (1 + e * p.X()[2]) + f * p.X()[2] * (p.X()[0] * p.X()[0] * p.X()[0]); });
 
     auto result = lorenz.RungeKutta4(tmax, 1e-3);
 
@@ -57,12 +57,12 @@ void DrawImage(double tmax, double *xf, double *yf, double *zf)
 {
     TCanvas *c = new TCanvas("canvas", "Pendulum", 0, 0, 1280, 720);
     TGraph2D *gr = new TGraph2D(tmax / 1e-2, xf, yf, zf);
-    gr->SetTitle("Lorenz Attractor");
+    gr->SetTitle("Aizawa Attractor");
 
     gStyle->SetPalette(1);
     gr->Draw("pcol LC");
 
-    c->SaveAs("lorenz.png");
+    c->SaveAs("aizawa.png");
 
     delete gr;
     delete c;
@@ -71,13 +71,13 @@ void DrawImage(double tmax, double *xf, double *yf, double *zf)
 void OpenApp(double tmax, double *xf, double *yf, double *zf)
 {
     TApplication *app = new TApplication("app", nullptr, nullptr);
-    TCanvas *c = new TCanvas("canvas", "Pendulum", 0, 0, 1280, 720);
+    TCanvas *c = new TCanvas("canvas", "attractors", 0, 0, 1280, 720);
 
     TRootCanvas *r = (TRootCanvas *)c->GetCanvasImp();
     r->Connect("CloseWindow()", "TApplication", gApplication, "Terminate()");
 
     TGraph2D *gr = new TGraph2D(tmax / 1e-2, xf, yf, zf);
-    gr->SetTitle("Lorenz Attractor");
+    gr->SetTitle("Aizawa Attractor");
 
     gStyle->SetPalette(1);
     gr->Draw("pcol LC");
