@@ -1,7 +1,9 @@
 # lorenz-attractor
 
-Lorenz Attractor Simulation. 
-ODE system is solved with RK4 method.
+Lorenz Attractor Simulation.
+
+The ODE system is solved with RK4 method.
+
 Bonus simulation written in Python!
 
 
