@@ -17,9 +17,11 @@
     "lorenz"
   ],
   "author": "João Biu",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joaopedrobiu6/lorenz-attractor/issues"
   },
-  "homepage": "https://github.com/joaopedrobiu6/lorenz-attractor#readme"
+  "homepage": "https://github.com/joaopedrobiu6/lorenz-attractor#readme",
+  "publishConfig": {
+    "@joaopedrobiu6:registry": "https://npm.pkg.github.com"
+  }
 }
