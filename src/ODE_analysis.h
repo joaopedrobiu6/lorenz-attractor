@@ -39,17 +39,6 @@ public:
     const std::vector<ODEpoint> &RungeKutta4(double Time = 0, double step = 1E-3);
     const std::vector<ODEpoint> &LeapFrogImprovedSolver(double Time = 0, double step = 1E-3); // método usado para confirmar valores do RK4
 
-    // DRAWS
-    void ODE_Draw(const char *s, const char *xaxis, const char *yaxis, int color, std::vector<ODEpoint> resultado);
-
-    std::vector<double> Moving_Average(std::vector<ODEpoint> r_new_time, double time_step, double tw);
-    void Moving_Average_Draw(const char *filename, const char *xaxis, const char *yaxis, int color, std::vector<ODEpoint> resultado, std::vector<double> media, double epsilon, double time_step, double tw);
-    void Phase_Draw(const char *title, const char *s, int color, std::vector<ODEpoint> resultado);
-
-    int Is_Stable(double *media, int n);
-
-    void Draw_Stability(const char *, int, double);
-    void Draw_Stability_Zoom(const char *, int, double);
 
 private:
     std::vector<double> obj; // for

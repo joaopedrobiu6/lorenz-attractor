@@ -43,7 +43,7 @@ int main()
 
     DrawImage(tmax, xf, yf, zf);
 
-    // OpenApp(tmax, xf, yf, zf);
+    OpenApp(tmax, xf, yf, zf);
 
     delete[] tempo;
     delete[] xf;
